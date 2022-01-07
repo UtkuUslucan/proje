@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let haber of haberler">
+      <div class="card bg-light">
+        <img src="assets/{{haber.haberkapakfotograf}}" class="card-img-top" alt="...">
+
+        <div class="card-body">
+          <h5 class="card-title">{{haber.haberadi}}</h5>
+          <hr>
+          <a href="/haberdetay?id={{haber.haberid}}" class="btn btn-primary">Devamını Oku</a>
+
+        </div>
+      </div>
+    </div>
+  </div>

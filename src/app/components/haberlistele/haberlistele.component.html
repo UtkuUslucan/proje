@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+        <a href="admin" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <img src="assets/adminpage.png" class="bi me-2" width="40" height="32">
+          <span class="fs-4">Admin Menü</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="admin" class="nav-link text-white " aria-current="page">
+              <img src="assets/anasayfa.png" class="bi me-2" width="32" height="32">
+              Anasayfa
+            </a>
+          </li>
+          <li>
+            <a href="haberekle" class="nav-link text-white">
+              <img src="assets/haberekle.png" class="bi me-2" width="32" height="32">
+              Haber Ekle
+            </a>
+          </li>
+          <li>
+            <a href="haberlistele" class="nav-link active text-white">
+              <img src="assets/kategoriekle.png" class="bi me-2" width="32" height="32">
+              Haber Listele
+            </a>
+          </li>
+          <li>
+            <a href="uyeler" class="nav-link text-white ">
+              <img src="assets/uyeler.png" class="bi me-2" width="32" height="32">
+              Üyeler
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/512/Admin-icon.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>{{adsoyad}}</strong>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="hesapbilgilerim">Hesap Bilgilerim</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item bg-danger" href="" (click)="OturumKapat()" *ngIf="FbServis.OturumKontrol()">Çıkış Yap</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      
+      <div class="h-100 p-5 text-white bg-dark rounded-3">
+        
+        <table class="table table-dark">
+          <thead>
+            <th>Haber Adı</th>
+            <th>Haber Özeti</th>
+            <th>Haber Kategorisi</th>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let haber of haberler">
+              <td>{{haber.haberadi}}</td>
+              <td>{{haber.haberozeti}}</td>
+              <td>{{haber.haberkategorisi}}</td>
+
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-warning text-black bg-warning btn-block"
+                  >Düzenle</button>
+                <button type="button" class="btn btn-danger text-white bg-danger btn-block"
+                  (click)="HaberSil(haber)">Sil</button>
+                  
+              </div>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+</div>

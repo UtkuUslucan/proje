@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="h-100 p-5 text-white bg-dark rounded-3">
+        <h2>HOŞGELDİN {{adsoyad}},</h2>
+
+        <div class="h-auto p-5 text-white bg-dark rounded-3">
+          <table class="table table-dark">
+            <thead>
+              <th>UID</th>
+              <th>Adı Soyadı</th>
+              <th>Kullanıcı Adı</th>
+              <th>Parola</th>
+              <th>e-Mail</th>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>{{uyeler.uid}}</td>
+                <td>{{uyeler.adsoyad}}</td>
+                <td>{{uyeler.kullaniciadi}}</td>
+                <td>{{uyeler.parola}}</td>
+                <td>{{uyeler.mail}}</td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-warning text-black bg-warning btn-block" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Bilgileri Düzenle
+                  </button>
+                  <button type="button" class="btn btn-danger text-white bg-danger btn-block">Hesabı Sil</button>
+                </div>
+
+              </tr>
+
+            </tbody>
+          </table>
+
+ 
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header text-black">
+                  <h5 class="modal-title" id="exampleModalLabel"(click)="UyeDuzenle(uyeler)" >Bilgileri Düzenle</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-black">
+                  <form #frm="ngForm" (submit)="Kaydet()">
+                    <div class="form-group mb-3">
+                      <label for="recipient-name" class="col-form-label">Ad Soyad</label>
+                      <input type="text" class="form-control" value="{{uyeler.adsoyad}}">
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="recipient-name" class="col-form-label">Kullanıcı Adı</label>
+                      <input type="text" class="form-control" value="{{uyeler.kullaniciadi}}">
+                    </div>
+                    <div class="form-group mb-3">
+                      <label for="recipient-name" class="col-form-label">E-Posta Adresi</label>
+                      <input type="text" class="form-control" value="{{uyeler.mail}}" disabled>
+                    </div>
+                    <div class="form-group mb-3">
+                      <button type="button" class="btn btn-warning btn-lg mt-2 mb-2 btn-block" (click)="Kaydet()">Kaydet</button>
+                    <!-- <input type="submit" class="btn btn-warning btn-lg mt-2 mb-2" value="Kaydet" [disabled]="frm.invalid">-->
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

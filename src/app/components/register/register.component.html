@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+      <form #frm="ngForm" (ngSubmit)="KayitYap()">
+      <div class="card">
+        <div class="card-header"><h4>Üye Kayıt Ekranı</h4></div>
+        <div class="card-body">
+          <div class="from-group">
+            <label>Adı Soyadı</label>
+            <input type="text" class="form-control" name="adsoyad" #adsoyad [(ngModel)]="secUye.adsoyad" required>
+          </div>
+          <div class="from-group">
+            <label>Kullanıcı Adı</label>
+            <input type="text" class="form-control" name="kullaniciadi" #kullaniciadi [(ngModel)]="secUye.kullaniciadi" required>
+          </div>
+          <div class="from-group">
+            <label>E-Posta Adresi</label>
+            <input type="text" class="form-control" name="mail" #mail [(ngModel)]="secUye.mail" required>
+          </div>
+          <div class="from-group">
+            <label>Parola</label>
+            <input type="password" class="form-control" name="parola" #parola [(ngModel)]="secUye.parola" required>
+          </div>
+        </div>
+        <div class="card-footer">
+
+          <input type="submit" class="btn btn-outline-primary btn-block" value="Kayıt Ol" [disabled]="frm.invalid">
+          <button class="btn btn-outline-link btn-block" [routerLink]="['/login']">Giriş Yap</button>
+        </div>
+      </div>
+      <div [ngClass]="sonuc.islem ? 'alert alert-success': 'alert alert-danger'" *ngIf="sonuc.mesaj?.length>0">
+        {{sonuc.mesaj}}
+      </div>
+    </form>
+    </div>
+    <div class="col-md-4">
+      
+    </div>
+  </div>
+</div>

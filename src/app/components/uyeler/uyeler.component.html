@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+      <div class="d-flex flex-column flex-shrink-0 bg-dark" style="width: 4.5rem;">
+        <a href="admin" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
+          data-bs-placement="right" data-bs-original-title="Icon-only">
+          <img src="assets/adminpage.png" class="bi me-2" width="40" height="32"> <span
+            class="visually-hidden">Icon-only</span>
+        </a>
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+          <li class="nav-item">
+            <a href="admin" class="nav-link  py-3 border-bottom" aria-current="page" title="" data-bs-toggle="tooltip"
+              data-bs-placement="right" data-bs-original-title="Home">
+              <img src="assets/anasayfa.png" class="bi me-2" width="32" height="32">
+            </a>
+          </li>
+          <li>
+            <a href="haberekle" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
+              data-bs-placement="right" data-bs-original-title="Dashboard">
+              <img src="assets/haberekle.png" class="bi me-2" width="32" height="32"> </a>
+          </li>
+          <li>
+            <a href="haberlistele" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
+              data-bs-placement="right" data-bs-original-title="Orders">
+              <img src="assets/kategoriekle.png" class="bi me-2" width="32" height="32"> </a>
+          </li>
+          <li>
+            <a href="uyeler" class="nav-link py-3 border-bottom active" title="" data-bs-toggle="tooltip"
+              data-bs-placement="right" data-bs-original-title="Customers">
+              <img src="assets/uyeler.png" class="bi me-2" width="32" height="32"> </a>
+          </li>
+        </ul>
+        <div class="dropdown border-top">
+          <a href="#"
+            class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+            id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/512/Admin-icon.png" alt="" width="32"
+              height="32" class="rounded-circle me-2">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="hesapbilgilerim">Hesap Bilgilerim</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item bg-danger" href="" (click)="OturumKapat()"
+                *ngIf="FbServis.OturumKontrol()">Çıkış Yap</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-11">
+      <form class="d-flex mb-2">
+        <input class="form-control bg-dark text-white" type="search" placeholder="Ara" aria-label="Search">
+        <button class="btn btn-warning" type="submit">Ara</button>
+      </form>
+      <div class="h-auto p-5 text-white bg-dark rounded-3">
+        
+        <button type="button" class="btn btn-primary text-white bg-primary btn-block" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">Üye Ekle</button><br><br>
+
+        <table class="table table-dark">
+          <thead>
+            <th>Adı Soyadı</th>
+            <th>Kullanıcı Adı</th>
+            <th>e-Mail</th>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let uye of uyeler">
+              <td>{{uye.adsoyad}}</td>
+              <td>{{uye.kullaniciadi}}</td>
+              <td>{{uye.mail}}</td>
+
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-danger text-white bg-danger btn-block"
+                  (click)="UyeSil(uye)">Sil</button>
+              </div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="exampleModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Üye Ekle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #frm="ngForm" (ngSubmit)="KayitYap()">
+              <div class="from-group">
+                <label>Adı Soyadı</label>
+                <input type="text" class="form-control" name="adsoyad" #adsoyad [(ngModel)]="secUye.adsoyad" required>
+              </div>
+              <div class="from-group">
+                <label>Kullanıcı Adı</label>
+                <input type="text" class="form-control" name="kullaniciadi" #kullaniciadi [(ngModel)]="secUye.kullaniciadi" required>
+              </div>
+              <div class="from-group">
+                <label>E-Posta Adresi</label>
+                <input type="text" class="form-control" name="mail" #mail [(ngModel)]="secUye.mail" required>
+              </div>
+              <div class="from-group">
+                <label>Parola</label>
+                <input type="password" class="form-control" name="parola" #parola [(ngModel)]="secUye.parola" required>
+              </div>
+              <input type="submit" class="btn btn-outline-primary btn-block" value="Üye Ekle" [disabled]="frm.invalid">
+          <div [ngClass]="sonuc.islem ? 'alert alert-success': 'alert alert-danger'" *ngIf="sonuc.mesaj?.length>0">
+            {{sonuc.mesaj}}
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
